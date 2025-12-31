@@ -6,8 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-    <header></header>
+    <header>
+        <form>
+            <input name="city" type="text" placeholder="City Name">
+            <button id="form_button" type="submit">Find Weather...</button>
+        </form>
+    </header>
     <main>
+        <div class="loader" hidden></div>
         <div class="weather-display location"></div>
         <div class="weather-data">
             <div class="weather-display conditions" data-type = "conditions" data-end = ""></div>

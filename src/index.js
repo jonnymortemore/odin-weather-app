@@ -19,15 +19,20 @@ class WeatherAppController {
 
     conditionColors = {
         "Overcast": "#72797bff",
-        "Clear": "#78c0d6ff"
+        "Clear": "#78c0d6ff",
+        "Partially cloudy": "#91b0b9ff",
+        "Rain": "#3e6fd1ff",
+        "Snow": "#edeef1ff"
     }
 
     constructor(location) {
+        this.setupFormButtons()
         this.processNewRequest(location)
     }
 
     async processNewRequest(location) {
         this.updateWeatherLocation(location)
+        this.clearDisplayedData()
         this.weatherJson = await this.fetchWeatherJson()
         this.displayWeatherData()
     }
@@ -39,15 +44,36 @@ class WeatherAppController {
         return data
     }
 
+    setupFormButtons() {
+       const form =  document.querySelector('form');
+       form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const FormObj = new FormData(event.target);
+        const data = Object.fromEntries(FormObj.entries());
+        this.processNewRequest(data.city);
+        
+       });
+    }
+
+    clearDisplayedData() {
+        document.querySelector('.loader').hidden = false;
+        document.querySelector('.weather-data').hidden = true;
+        document.querySelector('.location').hidden = true;
+    }
+
     displayWeatherData() {
-        const conditions = this.weatherJson.currentConditions.conditions;
-        document.querySelector('body').style.backgroundColor = this.conditionColors[conditions];
-        document.querySelector('.location').innerText = this.weatherJson.address;
+        const conditions = this.weatherJson.currentConditions.conditions.split(", ");
+        document.querySelector('.weather-data').hidden = false;
+        const location = document.querySelector('.location')
+        location.hidden = false;
+        location.innerText = this.weatherJson.address;
+        document.querySelector('body').style.backgroundColor = this.conditionColors[conditions[0]];
         document.querySelector('.weather-data').querySelectorAll("*").forEach((el) => {
             const dataName = el.dataset.type;
             const dataPoint = this.weatherJson.currentConditions[dataName];
             el.innerText = `${dataPoint}${el.dataset.end}` 
         })
+        document.querySelector('.loader').hidden = true;
     }
 
     updateWeatherLocation(newLocation) {

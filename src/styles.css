@@ -49,11 +49,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 :root {
+  --header-background: #dee7ed;
   --light-font-color: #DEEDEA;
   --dark-font-color: #162724;
   --standard-border: 3px solid var(--dark-background-color);
   --dark-border: 3px solid var(--dark-font-color);
-  --standard-radius: 20px;
+  --standard-radius: 10px;
 }
 
 
@@ -62,14 +63,23 @@ body {
   color: var(--dark-font-color);
   height: 100vh;
   width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 12fr;
+}
+
+header {
+  width: 100vw;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
+  padding-top: 50px;
 }
 
 main {
   width: 80vw;
+  place-self: center;
 }
 
 .location {
@@ -83,4 +93,39 @@ main {
 
 .conditions {
   font-size: 3rem;
+}
+
+form input {
+  border-bottom-left-radius: var(--standard-radius);
+  border-top-left-radius: var(--standard-radius);
+  height: 50px;
+  width: 300px;
+  border: transparent;
+  margin: 0;
+  padding-left: 10px;
+}
+
+form button {
+  border-bottom-right-radius: var(--standard-radius);
+  border-top-right-radius: var(--standard-radius);
+  height: 50px;
+  width: 150px;
+  border: transparent;
+  margin: 0;
+  background-color: rgb(190, 96, 96);
+}
+
+/* loader */
+.loader {
+    border: 5px solid var(--light-font-color); 
+    border-top: 5px solid var(--dark-font-color); 
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
