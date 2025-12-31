@@ -48,7 +48,39 @@ h1, h2, h3, h4, h5, h6 {
   text-wrap: balance;
 }
 
-body {
-  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+:root {
+  --light-font-color: #DEEDEA;
+  --dark-font-color: #162724;
+  --standard-border: 3px solid var(--dark-background-color);
+  --dark-border: 3px solid var(--dark-font-color);
+  --standard-radius: 20px;
 }
 
+
+body {
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  color: var(--dark-font-color);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  width: 80vw;
+}
+
+.location {
+  font-size: 5rem;
+  border-bottom: var(--dark-border);
+}
+
+.weather-data {
+  font-size: 2rem;
+}
+
+.conditions {
+  font-size: 3rem;
+}

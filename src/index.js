@@ -17,6 +17,11 @@ class WeatherAppController {
     UNIT_GROUP = "metric"
     INCLUDE = "current"
 
+    conditionColors = {
+        "Overcast": "#72797bff",
+        "Clear": "#78c0d6ff"
+    }
+
     constructor(location) {
         this.processNewRequest(location)
     }
@@ -29,14 +34,20 @@ class WeatherAppController {
 
     async fetchWeatherJson() {
         const fetchURL = `${this.URL}${this.location}?unitGroup=${this.UNIT_GROUP}&include=${this.INCLUDE}&key=${this.API_KEY}&contentType=json`
-
         const response = await fetch(fetchURL)
         const data = await response.json()
         return data
     }
 
     displayWeatherData() {
-        document.querySelector(".weather").innerText = this.weatherJson.currentConditions.temp;
+        const conditions = this.weatherJson.currentConditions.conditions;
+        document.querySelector('body').style.backgroundColor = this.conditionColors[conditions];
+        document.querySelector('.location').innerText = this.weatherJson.address;
+        document.querySelector('.weather-data').querySelectorAll("*").forEach((el) => {
+            const dataName = el.dataset.type;
+            const dataPoint = this.weatherJson.currentConditions[dataName];
+            el.innerText = `${dataPoint}${el.dataset.end}` 
+        })
     }
 
     updateWeatherLocation(newLocation) {
