@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odin Weather App</title>
+<script defer src="main.js"></script></head>
+<body>
+    <header>
+        <form>
+            <input id="city" name="city" type="text" placeholder="City Name" pattern="^[A-Za-z-' ]+$" required>
+            <button id="form_button" type="submit">Find Weather...</button>
+        </form>
+    </header>
+    <main>
+        <div class="loader" hidden></div>
+        <div class="weather-display location"></div>
+        <div class="weather-data">
+            <div class="weather-display conditions" data-type = "conditions" data-end = ""></div>
+            <div class="weather-display temp" data-type = "temp" data-end = " °C"></div>
+            <div class="weather-display humidity" data-type = "humidity" data-end = "% RH"></div>
+            <div class="weather-displa uv" data-type = "uvindex" data-end = " UV Index"></div>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+</html>
