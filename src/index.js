@@ -38,10 +38,16 @@ class WeatherAppController {
     }
 
     async fetchWeatherJson() {
-        const fetchURL = `${this.URL}${this.location}?unitGroup=${this.UNIT_GROUP}&include=${this.INCLUDE}&key=${this.API_KEY}&contentType=json`
-        const response = await fetch(fetchURL)
-        const data = await response.json()
-        return data
+        try {
+            const fetchURL = `${this.URL}${this.location}?unitGroup=${this.UNIT_GROUP}&include=${this.INCLUDE}&key=${this.API_KEY}&contentType=json`
+            const response = await fetch(fetchURL)
+            const data = await response.json()
+            return data
+        }
+        catch(error) {
+            console.log(error)
+            return this.weatherJson
+        }
     }
 
     setupFormButtons() {
@@ -51,8 +57,16 @@ class WeatherAppController {
         const FormObj = new FormData(event.target);
         const data = Object.fromEntries(FormObj.entries());
         this.processNewRequest(data.city);
-        
        });
+       const formInput = document.querySelector('#city')
+       formInput.addEventListener('input', () => {
+        if (formInput.validity.patternMismatch) {
+            formInput.setCustomValidity("A City name must contain letters only.")
+        } else {
+            formInput.setCustomValidity("")
+        }
+        
+       }) 
     }
 
     clearDisplayedData() {
