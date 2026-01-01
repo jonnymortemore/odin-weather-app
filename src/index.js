@@ -43,7 +43,8 @@ class WeatherAppController {
       const data = await response.json();
       return data;
     } catch (error) {
-      alert(error);
+      console.log(error);
+      alert("Location not found!")
       return this.weatherJson;
     }
   }
