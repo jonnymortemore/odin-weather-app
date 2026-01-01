@@ -55,7 +55,9 @@ h1, h2, h3, h4, h5, h6 {
   --standard-border: 3px solid var(--dark-background-color);
   --dark-border: 3px solid var(--dark-font-color);
   --standard-radius: 10px;
+  --highlight-colour: rgb(190, 96, 96);
 }
+
 
 
 body {
@@ -105,6 +107,7 @@ form input {
   padding-left: 10px;
 }
 
+
 form button {
   border-bottom-right-radius: var(--standard-radius);
   border-top-right-radius: var(--standard-radius);
@@ -112,7 +115,7 @@ form button {
   width: 150px;
   border: transparent;
   margin: 0;
-  background-color: rgb(190, 96, 96);
+  background-color: var(--highlight-colour);
 }
 
 /* loader */
