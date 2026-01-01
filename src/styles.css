@@ -56,6 +56,7 @@ h1, h2, h3, h4, h5, h6 {
   --dark-border: 3px solid var(--dark-font-color);
   --standard-radius: 10px;
   --highlight-colour: rgb(190, 96, 96);
+  --box-shadow: 5px 5px 10px rgba(0,0,0, 0.1);
 }
 
 
@@ -98,24 +99,25 @@ main {
 }
 
 form input {
-  border-bottom-left-radius: var(--standard-radius);
-  border-top-left-radius: var(--standard-radius);
+  border-radius: var(--standard-radius);
   height: 50px;
-  width: 300px;
+  width: 400px;
   border: transparent;
-  margin: 0;
+  margin: 10px;
   padding-left: 10px;
+  background-color: var(--header-background);
+  box-shadow: var(--box-shadow)
 }
 
 
 form button {
-  border-bottom-right-radius: var(--standard-radius);
-  border-top-right-radius: var(--standard-radius);
+  border-radius: var(--standard-radius);
   height: 50px;
   width: 150px;
   border: transparent;
-  margin: 0;
+  margin: 10px;
   background-color: var(--highlight-colour);
+  box-shadow: var(--box-shadow)
 }
 
 /* loader */
